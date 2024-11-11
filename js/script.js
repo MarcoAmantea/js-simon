@@ -4,15 +4,14 @@ const counterElem = document.getElementById("counter")
 const timerElem = document.getElementById("timer")
 const numElem = document.getElementById("num")
 const formElem = document.getElementById("form")
-const numOne = document.getElementById("num-one")
-const numTwo = document.getElementById("num-two")
-const numThree = document.getElementById("num-three")
-const numFour = document.getElementById("num-four")
-const numFive = document.getElementById("num-five")
-const verifyElem = document.getElementById("verify")
+const allInputs = document.querySelectorAll("input")
+console.log(allInputs);
+const textElem = document.getElementById("text")
 
 
 
+let arrayOne = [];
+let arrayUser = []
 
 btnRan.addEventListener("click", function(){
     if(numRan.classList.contains("d-none")){
@@ -28,12 +27,15 @@ btnRan.addEventListener("click", function(){
     counterElem.classList.remove("d-none")
     }
     function riempiArrayCasuale(length, min, max) {
-        let arrayOne = [];
         for (let i = 0; i < length; i++) {
             arrayOne.push(Math.floor(Math.random() * (max - min + 1)) + min);
+            const arrayCur = arrayOne[i];
+            console.log(arrayOne);
+            
         }
         return arrayOne;   
-    }
+        
+   }
     
     numRan.innerHTML = riempiArrayCasuale(5, 1, 100);
     let counter = 30;
@@ -43,7 +45,6 @@ btnRan.addEventListener("click", function(){
         counter--;
         if(counter < 0) {
           numRan.classList.add("d-none")
-          counterElem.classList.add("d-none")
           btnRan.classList.add("d-none")
           timerElem.classList.add("d-none")
           numElem.classList.add("d-none")
@@ -53,21 +54,26 @@ btnRan.addEventListener("click", function(){
       const myTimer = setTimeout(function(){
         formElem.classList.remove("d-none")
     }, 4000);
-    });
+});
 
-verifyElem.addEventListener("click", function(event){
+
+formElem.addEventListener("submit", function(event){
         event.preventDefault();
-        numOneValue = numOne.value.trim()
-        console.log(numOneValue);
-        numTwoValue = numTwo.value.trim()
-        console.log(numTwoValue);
-        numThreeValue = numThree.value.trim()
-        console.log(numThreeValue);
-        numFourValue = numFour.value.trim()
-        console.log(numFourValue);
-        numFiveValue = numFive.value.trim()
-        console.log(numFiveValue);
-})
+        for(let i = 0; i < allInputs.length; i++) {
+            let curInput = allInputs[i];
+            arrayUser.push(curInput.value);    
+            console.log(arrayUser);
+          }          
+         
+         
+ })
+ 
+
+  
+  
+  
+
+    
     
 
 
